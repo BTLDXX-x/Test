@@ -30,19 +30,15 @@ def get_current_weather(location, unit="摄氏度"):
 # 封装模型响应函数
 def get_response(messages):
     try:
-        print(f"正在调用API，消息: {messages}")
         response = dashscope.Generation.call(
             model='qwen-max',
             messages=messages,
             functions=functions,
             result_format='message'
         )
-        print(f"API响应: {response}")
         return response
     except Exception as e:
         print(f"API调用出错: {str(e)}")
-        import traceback
-        traceback.print_exc()
         return None
 
 # 使用function call进行QA
@@ -114,3 +110,4 @@ if __name__ == "__main__":
         print("最终结果:", result)
     else:
         print("对话执行失败")
+
